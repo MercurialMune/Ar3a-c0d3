@@ -25,20 +25,6 @@ def home(request):
 
 
 @login_required(login_url='/accounts/login')
-def profile(request):
-    current_user = request.user
-    if request.method == 'POST':
-        form = AddAreaForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('profile')
-    else:
-        form = AddAreaForm()
-        my_areas = Profile.objects.get(user_id=current_user)
-    return render(request, 'profile.html', locals())
-
-
-@login_required(login_url='/accounts/login')
 def upload_form(request):
     current_user = request.user
     if request.method == 'POST':
@@ -51,6 +37,21 @@ def upload_form(request):
     else:
         form = AddAreaForm()
     return render(request, 'add_area.html', {'uploadform': form})
+
+
+@login_required(login_url='/accounts/login')
+def add_biz(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = BusinessForm(request.POST, request.FILES)
+        if form.is_valid():
+            image = form.save(commit=False)
+            image.uploaded_by = current_user
+            image.save()
+            return redirect('home')
+    else:
+        form = BusinessForm()
+    return render(request, 'add-business.html', {'form': form})
 
 
 @login_required(login_url='/accounts/login')
