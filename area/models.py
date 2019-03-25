@@ -38,6 +38,5 @@ class Profile(models.Model):
 
 class Business(models.Model):
     business_name = models.CharField(max_length=50, blank=True)
-    email = models.EmailField
-    area = models.ForeignKey(Area, null=False, on_delete=models.CASCADE)
-
+    email = models.EmailField(null=False)
+    area = models.ForeignKey(Area, null=True, on_delete=models.CASCADE)
