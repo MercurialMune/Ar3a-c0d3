@@ -28,13 +28,13 @@ def home(request):
 def profile(request):
     current_user = request.user
     if request.method == 'POST':
-        form = UploadForm(request.POST, request.FILES)
+        form = AddAreaForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('profile')
     else:
-        form = UploadForm()
-        my_profile = Profile.objects.get(user_id=current_user)
+        form = AddAreaForm()
+        my_areas = Profile.objects.get(user_id=current_user)
     return render(request, 'profile.html', locals())
 
 
@@ -42,16 +42,15 @@ def profile(request):
 def upload_form(request):
     current_user = request.user
     if request.method == 'POST':
-        form = UploadForm(request.POST, request.FILES)
+        form = AddAreaForm(request.POST, request.FILES)
         if form.is_valid():
             image = form.save(commit=False)
             image.uploaded_by = current_user
             image.save()
             return redirect('home')
     else:
-        form = UploadForm()
+        form = AddAreaForm()
     return render(request, 'post.html', {'uploadform': form})
-
 
 
 @login_required(login_url='/accounts/login')
