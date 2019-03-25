@@ -50,7 +50,7 @@ def upload_form(request):
             return redirect('home')
     else:
         form = AddAreaForm()
-    return render(request, 'post.html', {'uploadform': form})
+    return render(request, 'add_area.html', {'uploadform': form})
 
 
 @login_required(login_url='/accounts/login')
