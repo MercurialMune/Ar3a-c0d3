@@ -18,6 +18,7 @@ class Profile(models.Model):
     profile_photo = models.ImageField(upload_to='profpics/')
     bio = models.TextField(blank=True)
     user_id = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    neighborhood = models.ForeignKey(Area, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.bio
@@ -39,3 +40,4 @@ class Business(models.Model):
     business_name = models.CharField(max_length=50, blank=True)
     email = models.EmailField
     area = models.ForeignKey(Area, null=False, on_delete=models.CASCADE)
+
