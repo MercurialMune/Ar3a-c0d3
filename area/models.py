@@ -34,3 +34,9 @@ class Profile(models.Model):
     @receiver(post_save, sender=User)
     def save_profile(sender, instance, **kwargs):
         instance.profile.save()
+
+
+class Business(models.Model):
+    business_name = models.CharField(max_length=50, blank=True)
+    email = models.EmailField
+    area = models.ForeignKey(Area, null=False, on_delete=models.CASCADE)

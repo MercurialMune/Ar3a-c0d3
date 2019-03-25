@@ -34,7 +34,7 @@ def profile(request):
             return redirect('profile')
     else:
         form = UploadForm()
-        my_projects = Area.objects.filter(owner=current_user)
+        my_projects = Area.objects.filter(resident=current_user)
         my_profile = Profile.objects.get(user_id=current_user)
     return render(request, 'profile.html', locals())
 
@@ -72,8 +72,8 @@ def edit_prof(request):
 @login_required(login_url='/accounts/login')
 def search(request):
     all_projects = Area.objects.all()
-    parameter = request.GET.get("project")
-    result = Area.objects.filter(project_name__icontains=parameter)
+    parameter = request.GET.get("business")
+    result = Area.objects.filter(area_name__icontains=parameter)
     return render(request, 'search.html', locals())
 
 
