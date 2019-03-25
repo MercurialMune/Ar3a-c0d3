@@ -4,7 +4,6 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 
 
-# Create your models here.
 class Area(models.Model):
     area_name = models.CharField(max_length=50, blank=True)
     area_photo = models.ImageField(upload_to='areapics/')
@@ -39,4 +38,11 @@ class Profile(models.Model):
 class Business(models.Model):
     business_name = models.CharField(max_length=50, blank=True)
     email = models.EmailField(null=False)
+    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
+    area = models.ForeignKey(Area, null=True, on_delete=models.CASCADE)
+
+
+class Notification(models.Model):
+    title = models.CharField(max_length=50, blank=True)
+    posted_by = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     area = models.ForeignKey(Area, null=True, on_delete=models.CASCADE)

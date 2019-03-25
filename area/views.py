@@ -77,12 +77,21 @@ def edit_prof(request):
         form = ProfileForm()
     return render(request, 'profile_edit.html', {'profileform': form})
 
+
 @login_required(login_url='/accounts/login')
-def search(request):
-    all_projects = Area.objects.all()
-    parameter = request.GET.get("business")
+def search_locations(request):
+    all_areas = Area.objects.all()
+    parameter = request.GET.get("area")
     result = Area.objects.filter(area_name__icontains=parameter)
-    return render(request, 'search.html', locals())
+    return render(request, 'search-locations.html', locals())
+
+
+@login_required(login_url='/accounts/login')
+def search_business(request):
+    all_business = Business.objects.all()
+    parameter = request.GET.get("business")
+    result = Business.objects.filter(business_name__icontains=parameter)
+    return render(request, 'search-businesses.html', locals())
 
 
 @login_required(login_url='/accounts/login')
