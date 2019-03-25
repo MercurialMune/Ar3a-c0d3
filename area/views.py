@@ -20,7 +20,7 @@ def register(request):
 @login_required(login_url='/accounts/login')
 def home(request):
     current_user = request.user
-    all_projects = Area.objects.all()
+    all_areas = Area.objects.all()
     return render(request, 'index.html', locals())
 
 
@@ -34,7 +34,6 @@ def profile(request):
             return redirect('profile')
     else:
         form = UploadForm()
-        my_projects = Area.objects.filter(resident=current_user)
         my_profile = Profile.objects.get(user_id=current_user)
     return render(request, 'profile.html', locals())
 
@@ -53,6 +52,15 @@ def upload_form(request):
         form = UploadForm()
     return render(request, 'post.html', {'uploadform': form})
 
+
+
+@login_required(login_url='/accounts/login')
+def area(request, area_id):
+    try:
+        area = Area.objects.get(id=area_id)
+    except Area.DoesNotExist:
+        raise Http404()
+    return render(request, "neighborhood.html", locals())
 
 
 @login_required(login_url='/accounts/login')

@@ -8,16 +8,15 @@ from django.db.models.signals import post_save
 class Area(models.Model):
     area_name = models.CharField(max_length=50, blank=True)
     area_photo = models.ImageField(upload_to='areapics/')
-    description = models.CharField(max_length=600, blank=True)
-    resident = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
+    population = models.CharField(max_length=50, blank=True)
 
     def __str__(self):
-        return self.url
+        return self.area_name
 
 
 class Profile(models.Model):
     profile_photo = models.ImageField(upload_to='profpics/')
-    bio = models.CharField(max_length=600, blank=True)
+    bio = models.TextField(blank=True)
     user_id = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
 
     def __str__(self):

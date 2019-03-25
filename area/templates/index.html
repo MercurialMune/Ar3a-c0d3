@@ -31,12 +31,14 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
       <p class="w3-center"><em>Click on different areas to view more details about them.</em></p>
   </div>
   <div class="w3-row-padding">
+   {%for area in all_areas%}
     <div class="w3-half w3-margin-bottom ">
-        <a href="{%url 'area' area_id=area.id%}"><img title="View Neighborhood" src="https://www.manageitafrica.com/wp-content/uploads/2014/12/nairobi.jpg" alt="Nairobi" class="w3-hover-opacity" style="width:100%"></a>
+        <a href="{%url 'area' area_id=area.id%}"><img title="View Neighborhood" src="{{area.area_photo.url}}" alt="Nairobi" class="w3-hover-opacity" style="width:100%"></a>
       <div class="w3-container w3-white">
-        <h4><em>Nairobi</em></h4>
+        <h4><em>{{area.area_name}}</em></h4>
       </div>
     </div>
+    {%endfor%}
   </div>
 <!-- End page content -->
 </div>
