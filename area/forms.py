@@ -1,11 +1,11 @@
 from django import forms
-from .models import Projects, Profile
+from .models import Area, Profile
 
 
 class UploadForm(forms.ModelForm):
     class Meta:
-        model = Projects
-        fields = ('project_name','project_photo','description','url','owner')
+        model = Area
+        fields = ('area_name','area_photo','description','resident')
 
 
 class ProfileForm(forms.ModelForm):
