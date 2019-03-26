@@ -79,14 +79,6 @@ def edit_prof(request):
 
 
 @login_required(login_url='/accounts/login')
-def search_locations(request):
-    all_areas = Area.objects.all()
-    parameter = request.GET.get("area")
-    result = Area.objects.filter(area_name__icontains=parameter)
-    return render(request, 'search-locations.html', locals())
-
-
-@login_required(login_url='/accounts/login')
 def search_business(request):
     all_business = Business.objects.all()
     parameter = request.GET.get("business")

@@ -9,7 +9,6 @@ urlpatterns = [
     url(r'^',include('area.urls')),
     url(r'^logout/$', views.logout, {"next_page": '/'}),
     url(r'^search-biz/$', views.search_business, name='search-biz'),
-    url(r'^search-area/$', views.search_locations, name='search-area'),
 
 ]
 
