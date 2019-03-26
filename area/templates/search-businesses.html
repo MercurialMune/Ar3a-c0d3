@@ -28,15 +28,14 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
   <div class="w3-row-padding">
     <h4 class="w3-center">Search Results</h4>
             {%if result%}
-           {%for project in result%}
-        <div class="w3-half w3-container w3-margin-bottom ">
-            <a href="{%url 'project' project_id=project.id%}"><img src="{{project.project_photo.url}}"
-                 alt="project_photo" style="width:100%" class="w3-hover-opacity" title="Click to view more details"></a>
-            <div class="w3-container w3-white w3-card">
-                <p><b>{{project.project_name}}</b></p>
-                <p>{{project.description}}</p>
-                <div class="w3-center "></div>
-            </div>
+
+           {%for business in result%}
+        <div class="w3-half w3-container w3-margin-bottom w3-display-middle">
+            <h4 class="w3-center">Businesses Found ...</h4>
+            <p>Name: {{business.business_name}}</p>
+            <p>Email: {{business.email}}</p>
+            <p>Located in: {{business.area}}</p>
+
         </div>
             {%endfor%}
             {%else%}
