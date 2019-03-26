@@ -12,6 +12,21 @@ class Area(models.Model):
     def __str__(self):
         return self.area_name
 
+    def create_business(self):
+        self.save()
+
+    def delete_business(self):
+        self.delete()
+
+    def find_neighborhood(self, neigborhood_id):
+        self.search_by_id(id=neigborhood_id)
+
+    def update_neighborhood(self):
+        self.update_area()
+
+    def update_occupants(self):
+        self.update_population()
+
 
 class Profile(models.Model):
     profile_photo = models.ImageField(upload_to='profpics/')
@@ -40,6 +55,21 @@ class Business(models.Model):
     email = models.EmailField(null=False)
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     area = models.ForeignKey(Area, null=True, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.area
+
+    def create_business(self):
+        self.save()
+
+    def delete_business(self):
+        self.delete()
+
+    def find_business(self, business_id):
+        self.search_by_id(id=business_id)
+
+    def update_business(self):
+        self.update()
 
 
 class Notification(models.Model):
