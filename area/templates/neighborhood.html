@@ -17,25 +17,57 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 <!-- Navigation Bar -->
 <div class="w3-bar w3-white w3-border-bottom">
 <a href="{%url 'home'%}" onclick="w3_close()" class="w3-bar-item w3-button  w3-hover-green"><i class="fa fa-home "></i> Home</a>
-  <a href="{%url 'post'%}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-green"><i class="fa fa-plus"></i> Add Areacode</a>
   <a href="{%url 'add-biz'%}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-green"><i class="fa fa-plus"></i> Add Business</a>
     <a href="/logout" onclick="w3_close()" class="w3-bar-item w3-button  w3-hover-red"><i class="fa fa-sign-out "></i>Logout</a>
     <form role="search" class="w3-hide-small" action="{%url 'search-biz'%}">
     <input type="text" name="business" class="w3-bar-item w3-input w3-transparent w3-hover-green w3-right" placeholder="Search businesses ...">
     </form>
 </div>
-
+<div class="w3-container">
+<h3 class="w3-center">{{area.area_name}}</h3>
 <div class="w3-row-padding">
-<h4 >{{project.project_name}}</h4>
-<div class="w3-container w3-col l6 w3-margin-bottom ">
+<div class="w3-container w3-half w3-margin-bottom ">
 <img src="{{area.area_photo.url}}"
      alt="area_photo" style="width:100%" class="w3-card-4">
 </div>
-<div class="w3-container w3-col l6 w3-padding w3-margin-bottom">
+<div class="w3-container w3-half w3-padding w3-margin-bottom">
 <h5 class="w3-center">Area Details</h5>
 <p>Name: {{area.area_name}}</p>
 <p>Population: {{area.population}}</p>
 <br>
+  <h5 class="w3-center">Businesses in the Area</h5>
+  <table class="w3-table-all w3-small w3-card">
+<tr>
+  <th>Name</th>
+  <th>Email</th>
+  <th>Area</th>
+</tr>
+    {% for business in result%}
+<tr>
+  <td>{{business.business_name}}</td>
+  <td>{{business.email}}</td>
+  <td>{{business.area}}</td>
+</tr>
+    {% endfor %}
+</table>
+</div>
+    </div>
+<div class="w3-row-padding w3-card">
+    <h5>Active Notifications</h5>
+    <table class="w3-table-all w3-small w3-card">
+<tr>
+  <th>Title</th>
+  <th>Posted by</th>
+  <th>Area</th>
+</tr>
+    {% for notification in notices%}
+<tr>
+  <td>{{notification.title}}</td>
+  <td>{{business.posted_by}}</td>
+  <td>{{business.area}}</td>
+</tr>
+    {% endfor %}
+</table>
 </div>
 </div>
 <script>

@@ -21,6 +21,7 @@ def register(request):
 def home(request):
     current_user = request.user
     all_areas = Area.objects.all()
+
     return render(request, 'index.html', locals())
 
 
@@ -41,8 +42,11 @@ def add_biz(request):
 
 @login_required(login_url='/accounts/login')
 def area(request, area_id):
+    businesses = Business.objects.all()
     try:
         area = Area.objects.get(id=area_id)
+        result = Business.objects.filter(id=area_id)
+        notices = Notification.objects.filter(id=area_id)
     except Area.DoesNotExist:
         raise Http404()
     return render(request, "neighborhood.html", locals())
