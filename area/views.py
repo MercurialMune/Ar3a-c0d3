@@ -25,21 +25,6 @@ def home(request):
 
 
 @login_required(login_url='/accounts/login')
-def upload_form(request):
-    current_user = request.user
-    if request.method == 'POST':
-        form = AddAreaForm(request.POST, request.FILES)
-        if form.is_valid():
-            image = form.save(commit=False)
-            image.uploaded_by = current_user
-            image.save()
-            return redirect('home')
-    else:
-        form = AddAreaForm()
-    return render(request, 'add_area.html', {'uploadform': form})
-
-
-@login_required(login_url='/accounts/login')
 def add_biz(request):
     current_user = request.user
     if request.method == 'POST':

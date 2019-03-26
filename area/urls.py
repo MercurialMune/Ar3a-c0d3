@@ -9,7 +9,6 @@ urlpatterns=[
     url(r'accounts/', include('django.contrib.auth.urls')),
     url(r'^home/$',views.home, name='home'),
     url(r'^area/(?P<area_id>[0-9])$', views.area, name='area'),
-    url(r'^post/', views.upload_form, name='post'),
     url(r'^add-business/', views.add_biz, name='add-biz'),
 
 ]
