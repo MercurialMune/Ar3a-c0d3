@@ -43,6 +43,6 @@ class Business(models.Model):
 
 
 class Notification(models.Model):
-    title = models.CharField(max_length=50, blank=True)
+    title = models.CharField(max_length=500, blank=True)
     posted_by = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     area = models.ForeignKey(Area, null=True, on_delete=models.CASCADE)
